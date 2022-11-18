@@ -1,0 +1,104 @@
+var currentScene = 0; //0 = splash screen, 1 = game
+
+//khan button class
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+    this.text = config.text || 19;
+};
+
+Button.prototype.draw = function() {
+    stroke(255, 255, 255);
+    noStroke();
+    rect(this.x, this.y, this.width, this.height,5);
+    fill(255, 255, 255);
+    textSize(this.text);
+    textAlign(LEFT,TOP);
+    text(this.label, this.x+10, this.y+this.height/4);
+};
+
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+//start button
+var startBtn = new Button
+({
+    x: 22,
+    y: 325,
+    label: "       START",
+    onClick: function() {
+        currentScene = 1;
+    }
+});
+
+var customBtn = new Button
+({
+        x: 230,
+    y: 325,
+    label: "  CUSTOMIZE",
+    onClick: function() {
+        currentScene = 2;
+    }
+});
+
+var splashScreen = function ()
+{
+    background(216, 238, 240);
+    fill(158, 158, 158);
+    fill(255, 0, 0);
+    textSize(45);
+    text ("Air Hockey", 98,17);
+    textSize(25);
+    text ("by Sophia, Rami, and Max", 37,74);
+    startBtn.draw();
+    fill(255, 0, 0);
+    customBtn.draw();
+    
+   // drawBitmoji(50,-40,90);
+};
+
+var gameScreen = function ()
+{
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    text("GAME", 200,200);
+};
+
+var customScreen = function ()
+{
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    text("CUSTOMIZATION SCREEN", 100,200);
+};
+
+ mouseClicked = function() {
+    if (currentScene === 0 || currentScene === 2)
+    {
+     startBtn.handleMouseClick();
+     customBtn.handleMouseClick();
+    }
+};
+
+draw = function() {
+        if (currentScene === 0)
+        {splashScreen();}
+        else if (currentScene === 1)
+        {gameScreen();}
+        else if (currentScene === 2)
+        {customScreen();}
+
+};
