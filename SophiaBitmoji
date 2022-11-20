@@ -1,0 +1,153 @@
+//BITMOJI CODE
+//clothes
+var drawClothes = function(x,y,h){
+    noStroke();
+    fill(0, 0, 0);
+    rect(x+(h/126*129), y+(h/126*228),h/126*139,h/126*52);//back panel of jacket
+    fill(135, 96, 252);
+    ellipse(x+(h/126*200),y+(h/126*260),h/126*150,h/126*80); // shirt
+    fill (0, 0, 0);
+    triangle(x+(h/126*223),y+(h/126*301),x+(h/126*129),y+(h/126*234),x+(h/126*110),y+(h/126*300)); //left jacket panel 
+    triangle(x+(h/126*296),y+(h/126*301),x+(h/126*265),y+(h/126*227),x+(h/126*189),y+(h/126*301)); //right jacket panel
+    fill(135, 96, 252);
+    rect(x+(h/126*174),y+(h/126*261),h/126*50,h/126*40);//jacket opening
+};
+
+//initials on jacket
+var drawInitials = function(x,y,h)
+{
+    fill(0,0,0);
+    stroke(255, 255, 255);
+    strokeWeight(3);
+    arc(x+(h/126*143),y+(h/126*272),h/126*12,h/126*12,90,333);//top of S
+    arc(x+(h/126*143),y+(h/126*285),h/126*12,h/126*12,278,535);//bottom of S
+    line(x+(h/126*244),y+(h/126*292),x+(h/126*237),y+(h/126*273)); //left stroke for W
+    line(x+(h/126*244),y+(h/126*292),x+(h/126*250),y+(h/126*278)); //left middle stroke for W
+    line(x+(h/126*258),y+(h/126*292),x+(h/126*250),y+(h/126*278)); //right middle stroke for W
+    line(x+(h/126*258),y+(h/126*292),x+(h/126*262),y+(h/126*273)); //right middle stroke for W
+    noStroke();
+};
+
+//head, neck, back hair
+var drawBaseHead = function(x,y,h)
+{
+    fill(107, 51, 10);
+    rect(x+(h/126*151),y+(h/126*122),h/126*102,h/126*106); // back of the hair
+    fill (247, 205, 205);
+    ellipse(x+(h/126*200),y+(h/126*206),h/126*50,h/126*98); // neck
+    fill(255, 227, 227);
+    ellipse(x+(h/126*200),y+(h/126*150),h/126*85,h/126*126); //head
+};
+
+//eyebrows
+var drawEyebrows = function(x,y,h)
+{
+    fill(54, 27, 8);
+    ellipse (x+(h/126*176),y+(h/126*137),h/126*27,h/126*5); // left eyebrow
+    ellipse (x+(h/126*222),y+(h/126*137),h/126*27,h/126*5); // right eyebrow
+    fill(255, 255, 255);
+};
+
+//eyes
+var drawEyes = function(x,y,h)
+{
+    strokeWeight(1);
+    stroke(247, 205, 205);
+    ellipse(x+(h/126*177),y+(h/126*152),h/126*27,h/126*15); // left eyeball
+    ellipse(x+(h/126*222),y+(h/126*152),h/126*27,h/126*15); // right eyeball
+    noStroke();
+    fill(10, 102, 5);
+    ellipse(x+(h/126*177),y+(h/126*152),h/126*12,h/126*12); // left iris
+    ellipse(x+(h/126*222),y+(h/126*152),h/126*12,h/126*12); // right iris
+    fill(0, 0, 0);
+    ellipse(x+(h/126*177),y+(h/126*152),h/126*6,h/126*6); // left pupil
+    ellipse(x+(h/126*222),y+(h/126*152),h/126*6,h/126*6); //right pupil
+    fill(255, 255, 255);
+    ellipse(x+(h/126*173),y+(h/126*150),h/126*3,h/126*3); // left highlight
+    ellipse(x+(h/126*218),y+(h/126*150),h/126*3,h/126*3); //right highlight
+};
+
+// nose
+var drawNose = function(x,y,h)
+{
+    fill(247, 205, 205);
+    ellipse (x+(h/126*204),y+(h/126*150),h/126*3,h/126*23); //right nose shadow
+    ellipse (x+(h/126*200),y+(h/126*167),h/126*20,h/126*8); //bottom nose shadow
+};
+
+//mouth
+var drawMouth = function (x,y,h) {
+    fill(255, 227, 227);
+    strokeWeight(3);
+    stroke(240, 170, 170);
+    arc(x+(h/126*200),y+(h/126*178),h/126*35,h/126*21,0,130); // smile w/ no teeth :)
+    fill(255,255,255);
+    //arc(x+(h/126*200),y+(h/126*183),h/126*35,h/126*20,0,180);
+    //line(x+(h/126*182),y+(h/126*181),x+(h/126*217),y+(h/126*181)); // smile with teeth :)
+    noStroke();
+};
+
+//front hair pieces
+var drawFrontHair = function(x,y,h) {
+    noStroke();
+    fill(107, 51, 10);
+    ellipse(x+(h/126*158),y+(h/126*147),h/126*19,h/126*85); //left front hair
+    ellipse(x+(h/126*241),y+(h/126*127),h/126*24,h/126*36); //right front hair
+    ellipse(x+(h/126*164),y+(h/126*232),h/126*26,h/126*32); //left bottom front hair
+    ellipse(x+(h/126*238),y+(h/126*227),h/126*30,h/126*41); //right bottom front hair
+};
+
+//ear & earring
+var drawEar = function(x,y,h)  {
+    fill(247, 205, 205);
+    arc(x+(h/126*240),y+(h/126*153),h/126*25,h/126*28,270,450); //right ear
+    fill(158, 9, 9);
+    ellipse(x+(h/126*244),y+(h/126*162),h/126*2,h/126*2); //earring
+};
+
+//hat
+var drawHat = function(x,y,h)
+{
+    fill(232, 18, 18);
+    arc(x+(h/126*201),y+(h/126*128),h/126*105,h/126*100,180,360); //hat
+    strokeWeight(2);
+    stroke(199, 170, 6);
+    rect(x+(h/126*220),y+(h/126*118),h/126*7,h/126*7);// clasp
+    noStroke();
+    fill(255, 227, 227);
+    arc(x+(h/126*199),y+(h/126*116),h/126*45,h/126*33,180,360); // opening in back of hat because its backwards. 
+    fill(107, 51, 10);
+    arc(x+(h/126*199),y+(h/126*108),h/126*35,h/126*15,180,360); // hair showing through baseball hat
+    fill(255, 255, 255);
+    rect(x+(h/126*175),y+(h/126*118),h/126*15,h/126*8); // logo
+};
+
+var drawBody = function(x,y,h)
+{
+    drawClothes(x,y,h);
+    drawInitials(x,y,h);
+};
+
+var drawFace = function(x,y,h)
+{
+    drawEyebrows(x,y,h);
+    drawEyes(x,y,h);
+    drawNose(x,y,h);
+    drawMouth(x,y,h);
+};
+
+var drawHead = function(x,y,h)
+{
+    drawBaseHead(x,y,h);
+    drawFace(x,y,h);
+    drawFrontHair(x,y,h);
+    drawEar(x,y,h);
+    drawHat(x,y,h);
+};
+
+var drawBitmoji = function(x,y,h)
+{
+    drawBody(x,y,h);
+    drawHead(x,y,h);
+};
+//END BITMOJI CODE
