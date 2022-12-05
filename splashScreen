@@ -37,8 +37,8 @@ Button.prototype.handleMouseClick = function() {
 //start button
 var startBtn = new Button
 ({
-    x: 22,
-    y: 325,
+    x: 100,
+    y: 500,
     label: "       START",
     onClick: function() {
         currentScene = 1;
@@ -47,8 +47,8 @@ var startBtn = new Button
 
 var customBtn = new Button
 ({
-        x: 230,
-    y: 325,
+    x: 350,
+    y: 500,
     label: "  CUSTOMIZE",
     onClick: function() {
         currentScene = 2;
@@ -61,9 +61,9 @@ var splashScreen = function ()
     fill(158, 158, 158);
     fill(255, 0, 0);
     textSize(45);
-    text ("Air Hockey", 98,17);
+    text ("Air Hockey", 200,17);
     textSize(25);
-    text ("by Sophia, Rami, and Max", 37,74);
+    text ("by Sophia, Rami, and Max", 165,74);
     startBtn.draw();
     fill(255, 0, 0);
     customBtn.draw();
@@ -73,9 +73,38 @@ var splashScreen = function ()
 
 var gameScreen = function ()
 {
-    background(0, 0, 0);
-    fill(255, 255, 255);
-    text("GAME", 200,200);
+background(0, 0, 0);
+//rink perimeter
+strokeWeight(5);
+stroke(191, 0, 0);
+fill(240, 240, 240);
+rect(150, 50, 300, 500, 50);
+
+//nets
+stroke(156, 204, 255);
+fill(156, 204, 255);
+strokeWeight(3);
+arc(300, 48, 90, 60, 0, 180);
+arc(300, 553, 90, 60, -180, 0);
+
+//center rink details
+stroke(156, 204, 255);
+fill(156, 204, 255);
+ellipse(300, 300, 20, 20); //center ice
+noFill();
+stroke(191, 0, 0);
+ellipse(300, 300, 100, 100); //center circle
+//dashed center line
+var lineX = 0;
+for (var i = 0; i < 4; i++) {
+    rect(150 + lineX, 300, 15, 0);
+    rect(350 + lineX, 300, 15, 0);
+    lineX += 28;
+}
+
+stroke(156, 204, 255);
+line(153, 150, 446, 150); //top blue line
+line(153, 450, 446, 450); //bottom blue line
 };
 
 var customScreen = function ()
