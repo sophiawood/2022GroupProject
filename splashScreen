@@ -1,3 +1,4 @@
+frameRate(60);
 var currentScene = 0; //0 = splash screen, 1 = game
 
 //khan button class
@@ -55,6 +56,42 @@ var customBtn = new Button
     }
 });
 
+var Paddle = function(x, y, color) {
+    this.x = x; 
+    this.y = y;
+    this.diameter = 50;
+    this.radius = this.diameter / 2;
+    this.color = color; 
+};
+
+Paddle.prototype.draw = function() {
+    strokeWeight(1);
+    stroke(0, 0, 0);
+    fill(this.color[0]);
+    ellipse(this.x, this.y, this.diameter, this.diameter);
+    fill(this.color[1]);
+    ellipse(this.x, this.y, this.radius, this.radius);
+};
+
+Paddle.prototype.move = function() {
+    this.x = mouseX;
+    this.y = mouseY;
+    if (mouseX < 178) {
+        this.x = 178;
+    }
+    else if (mouseX > 423) {
+        this.x = 423;
+    }
+    if (mouseY < 326) {
+        this.y = 326;
+    }
+    else if (mouseY > 523) {
+        this.y = 523;
+    }
+};
+
+var redPaddle = new Paddle(300, 450, [color(200, 0, 0), color(250, 0, 0)]);
+
 var splashScreen = function ()
 {
     background(216, 238, 240);
@@ -67,18 +104,26 @@ var splashScreen = function ()
     startBtn.draw();
     fill(255, 0, 0);
     customBtn.draw();
-    
+
    // drawBitmoji(50,-40,90);
 };
 
 var gameScreen = function ()
 {
-background(0, 0, 0);
-//rink perimeter
-strokeWeight(5);
+
+background(30, 0, 255);
+//scoreboard
+strokeWeight(3);
 stroke(191, 0, 0);
 fill(240, 240, 240);
-rect(150, 50, 300, 500, 50);
+rect(-9, 150, 110, 300, 15);
+
+
+//rink perimeter
+stroke(191, 0, 0);
+fill(240, 240, 240);
+strokeWeight(5);
+rect(150, 50, 300, 500, 30);
 
 //nets
 stroke(156, 204, 255);
@@ -105,7 +150,13 @@ for (var i = 0; i < 4; i++) {
 stroke(156, 204, 255);
 line(153, 150, 446, 150); //top blue line
 line(153, 450, 446, 450); //bottom blue line
+
+//Paddles
+redPaddle.draw();
+redPaddle.move();
+text(mouseX + " " + mouseY, 10, 575);
 };
+
 
 var customScreen = function ()
 {
@@ -131,3 +182,4 @@ draw = function() {
         {customScreen();}
 
 };
+
