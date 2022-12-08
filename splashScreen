@@ -1,5 +1,5 @@
 frameRate(60);
-var currentScene = 0; //0 = splash screen, 1 = game
+var currentScene = 0; //0 = splash screen, 1 = game, 2 = custom
 
 //khan button class
 var Button = function(config) {
@@ -15,8 +15,9 @@ var Button = function(config) {
 Button.prototype.draw = function() {
     stroke(255, 255, 255);
     noStroke();
+    fill(255, 255, 0);
     rect(this.x, this.y, this.width, this.height,5);
-    fill(255, 255, 255);
+    fill(255, 0, 0);
     textSize(this.text);
     textAlign(LEFT,TOP);
     text(this.label, this.x+10, this.y+this.height/4);
@@ -45,7 +46,7 @@ var startBtn = new Button
         currentScene = 1;
     }
 });
-
+//go to customization screen
 var customBtn = new Button
 ({
     x: 350,
@@ -56,6 +57,7 @@ var customBtn = new Button
     }
 });
 
+
 var Paddle = function(x, y, color) {
     this.x = x; 
     this.y = y;
@@ -63,6 +65,8 @@ var Paddle = function(x, y, color) {
     this.radius = this.diameter / 2;
     this.color = color; 
 };
+
+
 
 Paddle.prototype.draw = function() {
     strokeWeight(1);
@@ -92,6 +96,59 @@ Paddle.prototype.move = function() {
 
 var redPaddle = new Paddle(300, 450, [color(200, 0, 0), color(250, 0, 0)]);
 
+var redBtn = new Button
+({
+    x : 224,
+    y : 200,
+    label: "         Red",
+    onClick : function(){
+    redPaddle.color = [color(255, 0, 0), color(250, 0, 0)];
+        
+    }
+
+
+
+
+});
+
+var blueBtn = new Button
+({
+    x : 224,
+    y : 253,
+    label: "         Blue",
+    onClick : function(){
+    redPaddle.color= [color(0, 0, 255), color(0, 0, 255)];
+        
+    }
+
+
+
+
+});
+
+var greenBtn = new Button
+({
+    x : 224,
+    y : 305,
+    label: "         Green",
+    onClick : function(){
+    redPaddle.color = [color(7, 184, 7), color(7, 184, 7)];
+        
+    }
+
+
+
+
+});
+
+var customHomeBtn = new Button ({
+    x : 100,
+    y : 418,
+    label: "Home",
+    onClick : function(){
+        currentScene = 0;
+    }
+}); 
 var splashScreen = function ()
 {
     background(216, 238, 240);
@@ -162,7 +219,12 @@ var customScreen = function ()
 {
     background(0, 0, 0);
     fill(255, 255, 255);
-    text("CUSTOMIZATION SCREEN", 100,200);
+    text("CUSTOMIZATION", 223,44);
+    redBtn.draw();
+    greenBtn.draw();
+    blueBtn.draw();
+    customHomeBtn.draw();
+    
 };
 
  mouseClicked = function() {
@@ -170,6 +232,10 @@ var customScreen = function ()
     {
      startBtn.handleMouseClick();
      customBtn.handleMouseClick();
+     redBtn.handleMouseClick();
+     greenBtn.handleMouseClick();
+     blueBtn.handleMouseClick();
+     customHomeBtn.handleMouseClick();
     }
 };
 
@@ -182,4 +248,6 @@ draw = function() {
         {customScreen();}
 
 };
+
+
 
