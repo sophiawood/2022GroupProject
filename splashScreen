@@ -1,5 +1,7 @@
 frameRate(60);
 var currentScene = 0; //0 = splash screen, 1 = game, 2 = custom
+var playerScore = 0;
+var aiScore = 0;
 
 //khan button class
 var Button = function(config) {
@@ -73,7 +75,7 @@ Paddle.prototype.draw = function() {
     ellipse(this.x, this.y, this.d / 2, this.d / 2);
 };
 
-Paddle.prototype.move = function() {
+Paddle.prototype.playerMove = function() {
     this.x = mouseX;
     this.y = mouseY;
     if (mouseX < 178) {
@@ -90,7 +92,10 @@ Paddle.prototype.move = function() {
     }
 };
 
-var redPaddle = new Paddle(300, 450, 50, [color(200, 0, 0), color(250, 0, 0)]);
+
+var playerPaddle = new Paddle(300, 450, 50, [color(200, 0, 0), color(250, 0, 0)]);
+
+var AIPaddle = new Paddle(300, 120, 50, [color(0, 0, 0), color(40, 40, 40)]);
 
 var Puck = function(x, y, d, sx, sy) {
 
@@ -113,27 +118,62 @@ Puck.prototype.draw = function() {
 
 Puck.prototype.move = function() {
 
-    this.x -= this.sx;
-    this.y += this.sy;
+    this.x += this.sx;
+    this.y -= this.sy;
 
     if (this.x < 165) {
         this.sx *= -1;
     }
-
-    else if (this.x > 435) {
+    if (this.x > 435) {
         this.sx *= -1;
     }
-    
-    if (this.y < 75) {
-        this.sy *= -1;
+    if (this.x < 265 || this.x > 335) {
+        if (this.y < 75) {
+            this.sy *= -1;
+        }
+        if (this.y > 535) {
+            this.sy *= -1;
+        }
     }
-    else if (this.y > 535) {
-        this.sy *= -1;
-    }
+};
+
+Puck.prototype.goal = function() {
     
+    if (this.y < 40) {
+        playerScore++;
+        this.x = 300;
+        this.y = 300;
+
+    }
+    if (this.y > 580) {
+        aiScore++;
+        this.x = 300;
+        this.y = 300;
+    }
 };
 
 var puck = new Puck(300, 300, 25, 4, 4);
+
+Paddle.prototype.AIMove = function() {
+    
+    this.x = puck.x;
+
+    if (this.x < 175) {
+        this.x = 175 ;
+    }
+
+    if (this.x > 425) {
+        this.x = 425 ;
+    }
+};
+
+Paddle.prototype.collision = function() {
+    
+    if (this.x === puck.x && this.y === puck.y){
+        puck.sx *=-1;
+    }
+    
+};
 
 var redBtn = new Button
 ({
@@ -141,7 +181,7 @@ var redBtn = new Button
     y : 200,
     label: "         Red",
     onClick : function(){
-    redPaddle.color = [color(255, 0, 0), color(250, 0, 0)];
+    playerPaddle.color = [color(255, 0, 0), color(250, 0, 0)];
         
     }
 
@@ -156,7 +196,7 @@ var blueBtn = new Button
     y : 253,
     label: "         Blue",
     onClick : function(){
-    redPaddle.color= [color(0, 0, 255), color(0, 0, 255)];
+    playerPaddle.color= [color(0, 0, 255), color(0, 0, 255)];
         
     }
 
@@ -171,7 +211,7 @@ var greenBtn = new Button
     y : 305,
     label: "         Green",
     onClick : function(){
-    redPaddle.color = [color(7, 184, 7), color(7, 184, 7)];
+    playerPaddle.color = [color(7, 184, 7), color(7, 184, 7)];
         
     }
 
@@ -206,13 +246,27 @@ var splashScreen = function ()
 
 var gameScreen = function ()
 {
-
 background(30, 0, 255);
+
 //scoreboard
 strokeWeight(3);
 stroke(191, 0, 0);
 fill(240, 240, 240);
 rect(-9, 150, 110, 300, 15);
+fill(255, 255, 255);
+strokeWeight(1);
+rect(8, 168, 80, 72);
+line(8, 200, 88, 200);
+rect(8, 362, 80, 72);
+line(8, 400, 88, 400);
+fill(0, 0, 0);
+textSize(25);
+text("AWAY", 13, 170);
+text("HOME", 10, 405);
+textSize(35);
+text(aiScore, 40, 200);
+text(playerScore, 40, 360);
+
 
 
 //rink perimeter
@@ -248,13 +302,17 @@ line(153, 150, 446, 150); //top blue line
 line(153, 450, 446, 450); //bottom blue line
 
 //Paddles
-redPaddle.draw();
-redPaddle.move();
-text(mouseX + " " + mouseY, 10, 575);
+playerPaddle.draw();
+playerPaddle.playerMove();
+AIPaddle.draw();
+AIPaddle.AIMove();
+playerPaddle.collision();
 
 //Puck
 puck.draw();
 puck.move();
+puck.goal();
+
 };
 
 var customScreen = function ()
@@ -290,6 +348,7 @@ draw = function() {
         {customScreen();}
 
 };
+
 
 
 
