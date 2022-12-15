@@ -306,10 +306,9 @@ var drawE = function (x,y,h)
     fill(30, 0, 255);
     rect(x+h/90*609,y+h/90*30,h/90*30,h/90*15);//upper center
     rect(x+h/90*609,y+h/90*63,h/90*30,h/90*15);//lower center
-    triangle(x+(h/90*641),y+(h/90*55),x+(h/90*610),y+(h/90*65),x+(h/90*610),y+(h/90*80));//triangle on bottom center
-    triangle(x+(h/90*641),y+(h/90*55),x+(h/90*610),y+(h/90*45),x+(h/90*610),y+(h/90*30));//triangle on top center
-    triangle(x+(h/90*640),y+(h/90*54),x+(h/90*640),y+(h/90*10),x+(h/90*620),y+(h/90*43));//triangle on top
+    triangle(x+(h/90*640),y+(h/90*54),x+(h/90*640),y+(h/90*10),x+(h/90*619),y+(h/90*43));//triangle on top
     triangle(x+(h/90*640),y+(h/90*56),x+(h/90*640),y+(h/90*99),x+(h/90*620),y+(h/90*63));//triangle on bottom
+    rect(x+(h/90*621),y+(h/90*38),h/90*20,h/90*30); //end of center rect
     rect(x+(h/90*606),y+(h/90*9),h/90*5,h/90*93); // line break
 };
 
