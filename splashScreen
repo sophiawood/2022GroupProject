@@ -63,6 +63,7 @@ var Paddle = function(x, y, d, color) {
     this.x = x; 
     this.y = y;
     this.d = d;
+    this.r = this.d / 2;
     this.color = color; 
 };
 
@@ -102,6 +103,7 @@ var Puck = function(x, y, d, sx, sy) {
     this.x = x;
     this.y = y;
     this.d = d;
+    this.r = this.d / 2;
     this.sx = sx;
     this.sy = sy;
 };
@@ -169,8 +171,8 @@ Paddle.prototype.AIMove = function() {
 
 Paddle.prototype.collision = function() {
     
-    if (this.x === puck.x && this.y === puck.y){
-        puck.sx *=-1;
+    if (this.x  > puck.x - 11 && this.x < puck.x + 11 && this.y - this.r < puck.y + puck.r && this.y + this.r > puck.y - puck.r){
+        puck.sy *= -1;
     }
     
 };
@@ -312,7 +314,9 @@ playerPaddle.collision();
 puck.draw();
 puck.move();
 puck.goal();
-
+fill(255, 0, 0);
+text(mouseX + ", " + mouseY, 5, 550);
+text(puck.x + ", " + puck.y, 451, 550);
 };
 
 var customScreen = function ()
@@ -348,6 +352,7 @@ draw = function() {
         {customScreen();}
 
 };
+
 
 
 
