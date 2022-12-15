@@ -15,11 +15,10 @@ var Button = function(config) {
 };
 
 Button.prototype.draw = function() {
-    stroke(255, 255, 255);
     noStroke();
-    fill(255, 255, 0);
-    rect(this.x, this.y, this.width, this.height,5);
     fill(255, 0, 0);
+    rect(this.x, this.y, this.width, this.height,5);
+    fill(255, 255, 255);
     textSize(this.text);
     textAlign(LEFT,TOP);
     text(this.label, this.x+10, this.y+this.height/4);
@@ -227,6 +226,7 @@ var customHomeBtn = new Button ({
 // letters
 var drawA = function (x,y,h) //A
 {
+    fill(255, 0, 0);
     triangle(x+(h/90*5),y+(h/90*100),x+(h/90*115),y+(h/90*10),x+(h/90*40),y+(h/90*100)); // left slant
     triangle(x+(h/90*80),y+(h/90*10),x+(h/90*115),y+(h/90*10),x+(h/90*5),y+(h/90*100));// upper left slant
     rect(x+(h/90*90),y+(h/90*50), h/90*30, h/90*50); //right straight edge
@@ -354,6 +354,9 @@ var splashScreen = function ()
     textSize(45);
     textSize(25);
     text ("by Max, Rami, and Sophia", 165,95);
+    text("theres gonna be a hockey player", 15, 260);
+    text("here, or paddles depending on time", 15, 286);
+    text("working on it next", 15, 311);
     startBtn.draw();
     fill(255, 0, 0);
     customBtn.draw();
