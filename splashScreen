@@ -267,10 +267,10 @@ var drawH = function (x,y,h) //H
 var drawO = function (x,y,h) //O
 {
  rect(x+h/90*355,y+h/90*10,h/90*60,h/90*90);//base
- fill(216, 238, 240);
+ fill(30, 0, 255);
  rect(x+h/90*373,y+h/90*33,h/90*25,h/90*41);//center
  strokeWeight(5);
- stroke(216, 238, 240);
+ stroke(30, 0, 255);
  line(x+(h/90*421),y+(h/90*1),x+(h/90*353),y+(h/90*103));
  noStroke();
 };
@@ -279,9 +279,8 @@ var drawC = function (x,y,h)
 {
     fill(255, 0, 0);
     rect(x+h/90*426,y+h/90*10,h/90*60,h/90*90);//base
-    fill(216,238,240);
+    fill(30, 0, 255);
     rect(x+h/90*455,y+h/90*33,h/90*44,h/90*41);//center
-    //fill(9, 0, 255);
     triangle(x+(h/90*490),y+(h/90*34),x+(h/90*486),y+(h/90*5),x+(h/90*468),y+(h/90*34));//triangle on top
     triangle(x+(h/90*490),y+(h/90*74),x+(h/90*486),y+(h/90*104),x+(h/90*468),y+(h/90*74));//triangle on bottom
     
@@ -291,9 +290,9 @@ var drawK = function (x,y,h)
 {
     fill(255, 0, 0);
     rect(x+h/90*496,y+h/90*10,h/90*60,h/90*90);//base
-    triangle(x+(h/90*570),y+(h/90*10),x+(h/90*554),y+(h/90*28),x+(h/90*556),y+(h/90*10));//top angle
-    triangle(x+(h/90*570),y+(h/90*99),x+(h/90*554),y+(h/90*83),x+(h/90*554),y+(h/90*99));//bottom angle
-    fill(216, 238, 240);
+    triangle(x+(h/90*570),y+(h/90*9),x+(h/90*554),y+(h/90*28),x+(h/90*556),y+(h/90*9));//top angle
+    triangle(x+(h/90*570),y+(h/90*100),x+(h/90*554),y+(h/90*81),x+(h/90*554),y+(h/90*100));//bottom angle
+    fill(30, 0, 255);
     triangle(x+(h/90*525),y+(h/90*55),x+(h/90*540),y+(h/90*100),x+(h/90*525),y+(h/90*100));//triangle on bottom
     triangle(x+(h/90*525),y+(h/90*9),x+(h/90*540),y+(h/90*9),x+(h/90*525),y+(h/90*55));//triangle on top
     triangle(x+(h/90*525),y+(h/90*55),x+(h/90*557),y+(h/90*25),x+(h/90*557),y+(h/90*85));//triangle center
@@ -304,7 +303,7 @@ var drawE = function (x,y,h)
 {
     fill(255, 0, 0);
     rect(x+h/90*579,y+h/90*10,h/90*60,h/90*90);//base
-    fill(216,238, 240);
+    fill(30, 0, 255);
     rect(x+h/90*609,y+h/90*30,h/90*30,h/90*15);//upper center
     rect(x+h/90*609,y+h/90*63,h/90*30,h/90*15);//lower center
     triangle(x+(h/90*641),y+(h/90*55),x+(h/90*610),y+(h/90*65),x+(h/90*610),y+(h/90*80));//triangle on bottom center
@@ -348,8 +347,9 @@ var drawAirHockey = function (x,y,h) // AIR HOCKEY
 
 var splashScreen = function ()
 {
-    background(216, 238, 240);
-    fill(158, 158, 158);
+    background(30, 0, 255);
+    fill(232, 248, 255);
+    rect(0,470,600,131);
     fill(255, 0, 0);
     textSize(45);
     textSize(25);
