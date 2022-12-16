@@ -47,7 +47,7 @@ var startBtn = new Button
         currentScene = 1;
     }
 });
-//go to customization screen
+//customization button
 var customBtn = new Button
 ({
     x: 350,
@@ -57,7 +57,7 @@ var customBtn = new Button
         currentScene = 2;
     }
 });
-
+//paddle object class
 var Paddle = function(x, y, d, color) {
     this.x = x; 
     this.y = y;
@@ -74,7 +74,7 @@ Paddle.prototype.draw = function() {
     fill(this.color[1]);
     ellipse(this.x, this.y, this.d / 2, this.d / 2);
 };
-
+//paddle movement
 Paddle.prototype.playerMove = function() {
     this.x = mouseX;
     this.y = mouseY;
@@ -92,11 +92,12 @@ Paddle.prototype.playerMove = function() {
     }
 };
 
-
+//paddle variables
 var playerPaddle = new Paddle(300, 450, 50, [color(200, 0, 0), color(250, 0, 0)]);
 
 var AIPaddle = new Paddle(300, 120, 50, [color(0, 0, 0), color(40, 40, 40)]);
 
+//puck object class
 var Puck = function(x, y, d, sx, sy) {
 
     this.x = x;
@@ -117,6 +118,7 @@ Puck.prototype.draw = function() {
     ellipse(this.x, this.y, this.d / 2, this.d / 2);
 };
 
+//puck movement
 Puck.prototype.move = function() {
 
     this.x += this.sx;
@@ -138,6 +140,7 @@ Puck.prototype.move = function() {
     }
 };
 
+//puck in goal = score
 Puck.prototype.goal = function() {
     
     if (this.y < 47) {
@@ -153,11 +156,24 @@ Puck.prototype.goal = function() {
     }
 };
 
+//puck
 var puck = new Puck(300, 300, 25, 4, 4);
 
+
+//AI PADDLE movement
 Paddle.prototype.AIMove = function() {
+
+var  AIdifficulty = 20;
+
+if (aiScore)
+{AIdifficulty+=50;}
+
+else if(playerScore)
+{AIdifficulty = 20;}
+
+    this.x = puck.x + AIdifficulty ;
     
-    this.x = puck.x;
+    
 
     if (this.x < 175) {
         this.x = 175 ;
@@ -168,6 +184,7 @@ Paddle.prototype.AIMove = function() {
     }
 };
 
+//Paddle Collision
 Paddle.prototype.collision = function() {
     
     if (this.x  > puck.x - 11 && this.x < puck.x + 11 && this.y - this.r < puck.y + puck.r && this.y + this.r > puck.y - puck.r){
@@ -180,6 +197,7 @@ Paddle.prototype.collision = function() {
     
 };
 
+// buttons to change puck color in custom screen
 var redBtn = new Button
 ({
     x : 224,
@@ -217,6 +235,7 @@ var greenBtn = new Button
     }
 });
 
+//back home, from custom screen
 var customHomeBtn = new Button ({
     x : 100,
     y : 418,
@@ -347,6 +366,7 @@ var drawAirHockey = function (x,y,h) // AIR HOCKEY
     drawHockey(x,y,h);
 };
 
+//splashScreen
 var splashScreen = function ()
 {
     background(30, 0, 255);
@@ -365,6 +385,7 @@ var splashScreen = function ()
     drawAirHockey(0,0,91);
 };
 
+//gamescreen(rink, scoreboard)
 var gameScreen = function ()
 {
 background(30, 0, 255);
@@ -435,10 +456,14 @@ puck.draw();
 puck.move();
 puck.goal();
 fill(255, 0, 0);
-text(mouseX + ", " + mouseY, 5, 550);
+
+/*text(mouseX + ", " + mouseY, 5, 550);
 text(puck.x + ", " + puck.y, 451, 550);
+*/
+
 };
 
+//customization screen
 var customScreen = function ()
 {
     background(0, 0, 0);
@@ -457,6 +482,7 @@ var customScreen = function ()
     image(getImage("creatures/Hopper-Cool"),6,487);
 };
 
+//mouseClicked/ button handle mouse click
  mouseClicked = function() {
     if (currentScene === 0 || currentScene === 2)
     {
