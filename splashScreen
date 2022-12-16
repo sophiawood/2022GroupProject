@@ -174,6 +174,9 @@ Paddle.prototype.collision = function() {
         puck.sy *= -1;
     }
     
+    if (puck.y + puck.r > this.y - this.r && puck.y - puck.r < this.y + this.r && ((puck.x + puck.r > this.x - this.r && puck.x + puck.r < this.x - (this.r/2)) || (puck.x - puck.r < this.x + this.r && puck.x - puck.r > this.x + (this.r/2)))) {
+        puck.sx = puck.sx * -1;
+    }
     
 };
 
@@ -422,9 +425,10 @@ line(153, 450, 446, 450); //bottom blue line
 //Paddles
 playerPaddle.draw();
 playerPaddle.playerMove();
+playerPaddle.collision();
 AIPaddle.draw();
 AIPaddle.AIMove();
-playerPaddle.collision();
+AIPaddle.collision();
 
 //Puck
 puck.draw();
@@ -444,7 +448,13 @@ var customScreen = function ()
     greenBtn.draw();
     blueBtn.draw();
     customHomeBtn.draw();
-    
+    playerPaddle.draw();
+    image(getImage("avatars/robot_male_3"),456,472);
+     for(var i = 0; i < 600; i+=83)
+     {
+          image(getImage("space/star"),i,80);
+     }
+    image(getImage("creatures/Hopper-Cool"),6,487);
 };
 
  mouseClicked = function() {
