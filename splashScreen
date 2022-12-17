@@ -3,6 +3,54 @@ var currentScene = 0; //0 = splash screen, 1 = game, 2 = custom
 var playerScore = 0;
 var aiScore = 0;
 
+//bitmojis
+var drawBitmojiRami = function (x,y,big)
+{
+    stroke(0, 0, 0);
+    noFill();
+    noStroke();
+    fill(246, 250, 165);
+    ellipse(x+big/10*200,y+big/10*150,big/10*61,big/10*76); //head
+    fill(30, 0, 255);
+    
+    arc(x+big/10*169,y+big/10*186,big/10*33,big/10*55,0,365);//Lcheek
+    arc(x+big/10*233,y+big/10*185,big/10*33,big/10*55,0,365);//Rcheek
+    
+    fill(94, 42, 9);
+    quad(x+big/10*165,y+big/10*139,x+big/10*171,y+big/10*151,x+big/10*199,y+big/10*112,x+big/10*168,y+big/10*124);//hair
+    quad(x+big/10*234,y+big/10*137,x+big/10*225,y+big/10*150,x+big/10*198,y+big/10*113,x+big/10*229,y+big/10*120);
+    rect(x+big/10*183,y+big/10*119,big/10*37,big/10*15);
+    triangle(x+big/10*217,y+big/10*117,x+big/10*184,y+big/10*110,x+big/10*201,y+big/10*126);
+    stroke(221, 255, 0);
+    
+    fill(0, 0, 0);//glasses
+    rect(x+big/10*180,y+big/10*145,big/10*12,big/10*9);
+    rect(x+big/10*205,y+big/10*145,big/10*12,big/10*9);
+    fill(227, 252, 0);
+    rect(x+big/10*205,y+big/10*147,big/10*-13,big/10*4);
+    rect(x+big/10*231,y+big/10*150,big/10*-13,big/10*3,big/10*6);
+    rect(x+big/10*179,y+big/10*150,big/10*-9,big/10*3,big/10*6);
+    
+    stroke(0, 0, 0);
+    fill(246, 250, 165);
+    bezier(x+big/10*208,y+big/10*152,x+big/10*186,y+big/10*160,x+big/10*251,y+big/10*162,x+big/10*196,y+big/10*162); //nose
+    
+    fill(255, 0, 0);
+    arc(x+big/10*201,y+big/10*170,big/10*14,big/10*16,0,180);//mouth
+    line(x+big/10*206,y+big/10*170,x+big/10*194,y+big/10*170);
+    line(x+big/10*206,y+big/10*174,x+big/10*196,y+big/10*174);
+    
+    fill(199, 156, 64);//shirt
+    noStroke();
+    rect(x+big/10*175,y+big/10*184,big/10*53,big/10*86);
+    ellipse(x+big/10*173,y+big/10*198,big/10*26,big/10*27);
+    ellipse(x+big/10*229,y+big/10*198,big/10*26,big/10*27);
+    
+    fill(255, 255, 255);//Initials
+    textSize(big/10*18);
+    text("RJA",x+big/6*110,y+big/5*96,big/10*225,big/10*226);
+};
+
 //khan button class
 var Button = function(config) {
     this.x = config.x || 0;
@@ -383,6 +431,7 @@ var splashScreen = function ()
     fill(255, 0, 0);
     customBtn.draw();
     drawAirHockey(0,0,91);
+    drawBitmojiRami(128,40,8);
 };
 
 //gamescreen(rink, scoreboard)
