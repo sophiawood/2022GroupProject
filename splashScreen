@@ -10,7 +10,7 @@ var drawBitmojiRami = function (x,y,big)
     noFill();
     noStroke();
     fill(246, 250, 165);
-    ellipse(x+big/10*200,y+big/10*150,big/10*61,big/10*76); //head
+    ellipse(x+big/10*200,y+big/10*150,big/10*61,big/10*71); //head
     fill(30, 0, 255);
     
     arc(x+big/10*169,y+big/10*186,big/10*33,big/10*55,0,365);//Lcheek
@@ -595,6 +595,11 @@ var gameScreen = function ()
 {
 background(30, 0, 255);
 
+//audience
+drawBitmojiRami(325,-26,9);
+drawSophiaBitmoji(408,211,62);
+
+
 //scoreboard
 strokeWeight(3);
 stroke(191, 0, 0);
@@ -671,7 +676,7 @@ text(puck.x + ", " + puck.y, 451, 550);
 //customization screen
 var customScreen = function ()
 {
-    background(0, 0, 0);
+    background(30, 0, 255);
     fill(255, 255, 255);
     text("CUSTOMIZATION", 223,44);
     redBtn.draw();
