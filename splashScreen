@@ -260,6 +260,21 @@ var customBtn = new Button
         currentScene = 2;
     }
 });
+//pause button
+var pauseBtn = new Button
+({
+    x: 25,
+    y: 500,
+    height: 50,
+    width: 80,
+    label: "PAUSE",
+    text: 16,
+    onClick: function() {
+        currentScene = 3;
+    }
+});
+
+
 //paddle object class
 var Paddle = function(x, y, d, color) {
     this.x = x; 
@@ -592,6 +607,7 @@ var splashScreen = function ()
 var gameScreen = function ()
 {
 background(30, 0, 255);
+pauseBtn.draw();
 
 //audience
 drawBitmojiRami(325,-26,9);
@@ -599,37 +615,37 @@ drawSophiaBitmoji(408,211,62);
 
 // red reactions
 if (paddleColor === 1 && playerScore >= aiScore) {
-    text("Red is the best!", 469,45);
-    text("Red!!", 469, 226);
-    text("Woo Red!", 469, 365);
+    text("Red is the best!", 460,45);
+    text("Rattlesnakes!!", 465, 226);
+    text("Woo Rattlers!", 465, 365);
 }
 if (paddleColor === 1 && playerScore < aiScore) {
-    text("Go Black!!", 469,45);
-    text("Red team 4 life!", 469, 226);
-    text("Black will win!", 469, 372);
+    text("Go Badgers!!", 465,45);
+    text("Rattlesnakes 4 life!", 459, 226);
+    text("Black will win!", 466, 372);
 }
 
 // blue reactions
 if (paddleColor === 2 && playerScore >= aiScore) {
-    text("Blue is the best!!", 469,45);
-    text("I love Blue!", 469, 226);
-    text("Blue is #1!", 469, 365);
+    text("Blue is the best!!", 459,45);
+    text("Love the Bobcats!", 461, 226);
+    text("Bobcats are #1!", 466, 365);
 }
 if (paddleColor === 2 && playerScore < aiScore) {
-    text("Go Black!!", 469,45);
-    text("Yay Black team!", 469, 226);
-    text("Rooting for Blue!", 469, 372);
+    text("Yay Black team!!", 466,45);
+    text("Go Black Badgers!", 461, 226);
+    text("Rooting for Blue!", 461, 372);
 }
 // green reactions 
 if (paddleColor === 3 && playerScore >= aiScore) {
-    text("Go Green!", 469,45);
-    text("Yay Green!!", 469, 226);
-    text("I'm team Green!", 469, 365);
+    text("Go Gators!", 469,45);
+    text("I'm team Green!", 469, 226);
+    text("Gators! Gators!", 469, 365);
 }
 if (paddleColor === 3 && playerScore < aiScore) {
     text("Let's go Green!", 469,45);
     text("Let's go Black!!", 469, 226);
-    text("Black for the win!!", 469, 372);
+    text("Go Badgers!", 469, 372);
 }
 
 //scoreboard
@@ -710,7 +726,8 @@ var customScreen = function ()
 {
     background(30, 0, 255);
     fill(255, 255, 255);
-    text("CUSTOMIZATION", 223,44);
+    textSize(45);
+    text("CUSTOMIZATION", 115,25);
     redBtn.draw();
     greenBtn.draw();
     blueBtn.draw();
@@ -722,18 +739,111 @@ var customScreen = function ()
           image(getImage("space/star"),i,80);
      }
     image(getImage("creatures/Hopper-Cool"),6,487);
+    //team names
+    //red rattlesnakes
+    if (paddleColor === 1) 
+    {
+        textSize(35);
+        fill(255, 255, 255);
+        text("Red Rattlesnakes", 163, 525);
+    }
+    //blue bobcats
+    if (paddleColor === 2) 
+    {
+        textSize(35);
+        fill(255, 255, 255);
+        text("Blue Bobcats", 205, 525);
+    }
+    //green gators
+    if (paddleColor === 3) 
+    {
+        textSize(35);
+        fill(255, 255, 255);
+        text("Green Gators", 200, 525);
+    }
 };
 
+//pause screen
+var pauseScreen = function ()
+{
+    background(30, 0, 255);
+    drawAirHockey(0,0,90);
+    fill(232, 248, 255);
+    rect(0,100,600,140);
+    fill(255, 0, 0);
+    textSize(45);
+    text("TIME OUT", 185, 165);
+   // text("Current Score: ", 100, 200);
+    fill(52, 128, 44);
+    startBtn.draw();
+    //change START to CONTINUE
+    fill(255, 0, 0);
+    rect(127,508,100,30);
+    fill(255, 255, 255);
+    text("CONTINUE",125,513);
+   drawBitmojiRami(212,229,15);
+   drawSophiaBitmoji(236,345,108);
+    
+    //player team pause
+    if (paddleColor === 1)
+    {
+        textSize(35);
+        fill(255, 0, 0);
+        text("RATTLESNAKES CALL", 120,120);
+    }
+    else if (paddleColor === 2)
+    {
+        textSize(35);
+        fill(255, 0, 0);
+        text("BOBCATS CALL", 163,120);
+    }
+    else if (paddleColor === 3)
+    {
+        textSize(35);
+        fill(255, 0, 0);
+        text("GATORS CALL", 175,120);
+    }
+    
+    //scores
+    if (aiScore > playerScore)
+    {
+        text("Black Badgers Lead", 140, 300);
+        text(aiScore + " - " + playerScore, 260, 350);
+    }
+    else if (aiScore < playerScore)
+    {
+        text("Home Leads", 199, 260);
+        text(playerScore + " - " + aiScore, 260, 306);
+    }
+        else if (aiScore === playerScore)
+    {
+        text("TIE", 267, 260);
+        text(playerScore + " - " + aiScore, 260, 306);
+    }
+    
+  
+};
 //mouseClicked/ button handle mouse click
  mouseClicked = function() {
-    if (currentScene === 0 || currentScene === 2)
+    if (currentScene === 0)
     {
      startBtn.handleMouseClick();
      customBtn.handleMouseClick();
+    }
+    else if (currentScene === 1)
+    {
+        pauseBtn.handleMouseClick();
+    }
+    else if (currentScene === 2)
+    {
      redBtn.handleMouseClick();
      greenBtn.handleMouseClick();
      blueBtn.handleMouseClick();
      customHomeBtn.handleMouseClick();
+    }
+    else if (currentScene === 3) 
+    {
+     startBtn.handleMouseClick();
     }
 };
 
@@ -744,5 +854,7 @@ draw = function() {
         {gameScreen();}
         else if (currentScene === 2)
         {customScreen();}
+        else if (currentScene === 3)
+        {pauseScreen();}
 
 };
