@@ -2,6 +2,7 @@ frameRate(60);
 var currentScene = 0; //0 = splash screen, 1 = game, 2 = custom
 var playerScore = 0;
 var aiScore = 0;
+var paddleColor = 1;
 
 //bitmojis
 var drawBitmojiRami = function (x,y,big)
@@ -406,12 +407,10 @@ var redBtn = new Button
     y : 200,
     label: "         Red",
     onClick : function(){
-    playerPaddle.color = [color(255, 0, 0), color(250, 0, 0)];
+    playerPaddle.color = [color(179, 4, 4), color(250, 0, 0)];
+    paddleColor = 1;
         
     }
-
-
-
 
 });
 
@@ -421,7 +420,8 @@ var blueBtn = new Button
     y : 253,
     label: "         Blue",
     onClick : function(){
-    playerPaddle.color= [color(0, 0, 255), color(0, 0, 255)];
+    playerPaddle.color= [color(5, 5, 171), color(0, 0, 255)];
+    paddleColor = 2;
         
     }
 });
@@ -432,7 +432,8 @@ var greenBtn = new Button
     y : 305,
     label: "         Green",
     onClick : function(){
-    playerPaddle.color = [color(7, 184, 7), color(7, 184, 7)];
+    playerPaddle.color = [color(2, 135, 2), color(7, 184, 7)];
+    paddleColor = 3;
         
     }
 });
@@ -581,9 +582,6 @@ var splashScreen = function ()
     textSize(45);
     textSize(25);
     text ("by Max, Rami, and Sophia", 165,95);
-    //text("theres gonna be a hockey player", 15, 260);
-    //text("here, or paddles depending on time", 15, 286);
-    //text("working on it next", 15, 311);
     startBtn.draw();
     fill(255, 0, 0);
     customBtn.draw();
@@ -599,6 +597,40 @@ background(30, 0, 255);
 drawBitmojiRami(325,-26,9);
 drawSophiaBitmoji(408,211,62);
 
+// red reactions
+if (paddleColor === 1 && playerScore >= aiScore) {
+    text("Red is the best!", 469,45);
+    text("Red!!", 469, 226);
+    text("Woo Red!", 469, 365);
+}
+if (paddleColor === 1 && playerScore < aiScore) {
+    text("Go Black!!", 469,45);
+    text("Red team 4 life!", 469, 226);
+    text("Black will win!", 469, 372);
+}
+
+// blue reactions
+if (paddleColor === 2 && playerScore >= aiScore) {
+    text("Blue is the best!!", 469,45);
+    text("I love Blue!", 469, 226);
+    text("Blue is #1!", 469, 365);
+}
+if (paddleColor === 2 && playerScore < aiScore) {
+    text("Go Black!!", 469,45);
+    text("Yay Black team!", 469, 226);
+    text("Rooting for Blue!", 469, 372);
+}
+// green reactions 
+if (paddleColor === 3 && playerScore >= aiScore) {
+    text("Go Green!", 469,45);
+    text("Yay Green!!", 469, 226);
+    text("I'm team Green!", 469, 365);
+}
+if (paddleColor === 3 && playerScore < aiScore) {
+    text("Let's go Green!", 469,45);
+    text("Let's go Black!!", 469, 226);
+    text("Black for the win!!", 469, 372);
+}
 
 //scoreboard
 strokeWeight(3);
