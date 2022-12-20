@@ -52,7 +52,7 @@ var drawBitmojiRami = function (x,y,big)
     text("RJA",x+big/6*110,y+big/5*96,big/10*225,big/10*226);
 };
 
-//BITMOJI CODE
+// Sophia BITMOJI CODE
 //clothes
 var drawClothes = function(x,y,h){
     noStroke();
