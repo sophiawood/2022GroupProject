@@ -204,6 +204,50 @@ var drawSophiaBitmoji = function(x,y,h)
     drawBody(x,y,h);
     drawHead(x,y,h);
 };
+
+var drawBitmojiMax = function (x,y,z) // function to draw my bitmoji
+{
+    noStroke();
+    fill(255, 212, 166);
+    ellipse(x+(z/150*100), y+(z/150*100), z/150*80, z/150*100); 
+    fill(255, 255, 255);
+    fill(0, 0, 0);
+    arc(x+(z/150*100), y+(z/150*96), z/150*86, z/150*95, 180, 360);
+    fill(255, 255, 255);
+    rect(x+(z/150*90), y+(z/150*78), z/150*5, z/150*13);
+    ellipse(x+(z/150*105), y+(z/150*84), 10*z/100, 10*z/100);
+    fill(0, 0, 0);
+    stroke(0, 0, 0);
+    line(x+(z/150*106), y+(z/150*82), x+(z/150*104), y+(z/150*86));
+    line(x+(z/150*104), y+(z/150*82), x+(z/150*106), y+(z/150*86));
+    noStroke();
+    fill(145, 93, 40);
+    ellipse(x+(z/150*90), y+(z/150*102), z/150*8, z/150*6);
+    ellipse(x+(z/150*114), y+(z/150*102), z/150*8, z/150*6);
+    stroke(0, 0, 0);
+    fill(255, 212, 166);
+    bezier(x+(z/150*100), y+(z/150*104), x+(z/150*120), y+(z/150*124), x+(z/150*92), y     +(z/150*117), x+(z/150*99), y+(z/150*115));
+    fill(255, 255, 255);
+    arc(x+(z/150*100), y+(z/150*126), z/150*27, z/150*14, 0, 180);
+    line(x+(z/150*87), y+(z/150*126), x+(z/150*113), y+(z/150*126));
+    fill(255, 255, 255);
+    stroke(0, 0, 0);
+    quad(x+(z/150*70), y+(z/150*148), x+(z/150*136), y+(z/150*148), x+(z/150*145), y      +(z /150*200), x+(z/150*59), y+(z/150*200));
+    noStroke();
+    fill(255, 255, 122);
+    rect(x+(z/150*76), y+(z/150*153), z/150*10, z/150*2);
+    fill(0, 0, 204);
+    rect(x+(z/150*74), y+(z/150*155), z/150*15, z/150*2);
+    fill(252, 205, 248);
+    rect(x+(z/150*74), y+(z/150*157), z/150*15, z/150*2);
+    stroke(0, 0, 0);
+    line(x+(z/150*85), y+(z/150*190), x+(z/150*90), y+(z/150*160));
+    line(x+(z/150*90), y+(z/150*160), x+(z/150*94), y+(z/150*178));
+    line(x+(z/150*94), y+(z/150*178), x+(z/150*98), y+(z/150*160));
+    line(x+(z/150*98), y+(z/150*160), x+(z/150*103), y+(z/150*190));
+    line(x+(z/150*110), y+(z/150*160), x+(z/150*110), y+(z/150*189));
+    line(x+(z/150*110), y+(z/150*190), x+(z/150*125), y+(z/150*190));
+};
 //END BITMOJI CODE
 
 //khan button class
@@ -591,6 +635,7 @@ var splashScreen = function ()
     drawAirHockey(0,0,91);
     drawBitmojiRami(148,48,18);
     drawSophiaBitmoji(142,171,126);
+    drawBitmojiMax(-7, 186, 213);
     fill(232, 248, 255);
     rect(0,470,600,131);
     fill(255, 0, 0);
@@ -612,6 +657,7 @@ pauseBtn.draw();
 //audience
 drawBitmojiRami(325,-26,9);
 drawSophiaBitmoji(408,211,62);
+drawBitmojiMax(442, 380, 100);
 
 // red reactions
 if (paddleColor === 1 && playerScore >= aiScore) {
