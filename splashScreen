@@ -510,6 +510,7 @@ var customHomeBtn = new Button ({
 // letters
 var drawA = function (x,y,h) //A
 {
+    noStroke();
     fill(255, 0, 0);
     triangle(x+(h/90*5),y+(h/90*100),x+(h/90*115),y+(h/90*10),x+(h/90*40),y+(h/90*100)); // left slant
     triangle(x+(h/90*80),y+(h/90*10),x+(h/90*115),y+(h/90*10),x+(h/90*5),y+(h/90*100));// upper left slant
@@ -634,8 +635,8 @@ var splashScreen = function ()
     background(30, 0, 255);
     drawAirHockey(0,0,91);
     drawBitmojiRami(148,48,18);
-    drawSophiaBitmoji(142,171,126);
-    drawBitmojiMax(-7, 186, 213);
+    drawSophiaBitmoji(100,171,126);
+    drawBitmojiMax(-62, 186, 213);
     fill(232, 248, 255);
     rect(0,470,600,131);
     fill(255, 0, 0);
@@ -656,42 +657,42 @@ pauseBtn.draw();
 
 //audience
 drawBitmojiRami(325,-26,9);
-drawSophiaBitmoji(408,211,62);
-drawBitmojiMax(442, 380, 100);
+drawSophiaBitmoji(408,237,62);
+drawBitmojiMax(442, 412, 100);
 
 // red reactions
 if (paddleColor === 1 && playerScore >= aiScore) {
     text("Red is the best!", 460,45);
-    text("Rattlesnakes!!", 465, 226);
-    text("Woo Rattlers!", 465, 365);
+    text("Rattlesnakes!!", 465, 250);
+    text("Woo Rattlers!", 465, 417);
 }
 if (paddleColor === 1 && playerScore < aiScore) {
     text("Go Badgers!!", 465,45);
-    text("Rattlesnakes 4 life!", 459, 226);
-    text("Black will win!", 466, 372);
+    text("Rattlesnakes 4 life!", 459, 250);
+    text("Black will win!", 466, 417);
 }
 
 // blue reactions
 if (paddleColor === 2 && playerScore >= aiScore) {
     text("Blue is the best!!", 459,45);
-    text("Love the Bobcats!", 461, 226);
-    text("Bobcats are #1!", 466, 365);
+    text("Love the Bobcats!", 461, 250);
+    text("Bobcats are #1!", 466, 417);
 }
 if (paddleColor === 2 && playerScore < aiScore) {
     text("Yay Black team!!", 466,45);
-    text("Go Black Badgers!", 461, 226);
-    text("Rooting for Blue!", 461, 372);
+    text("Go Black Badgers!", 461, 250);
+    text("Rooting for Blue!", 461, 417);
 }
 // green reactions 
 if (paddleColor === 3 && playerScore >= aiScore) {
     text("Go Gators!", 469,45);
-    text("I'm team Green!", 469, 226);
-    text("Gators! Gators!", 469, 365);
+    text("I'm team Green!", 469, 250);
+    text("Gators! Gators!", 469, 417);
 }
 if (paddleColor === 3 && playerScore < aiScore) {
     text("Let's go Green!", 469,45);
-    text("Let's go Black!!", 469, 226);
-    text("Go Badgers!", 469, 372);
+    text("Let's go Black!!", 469, 250);
+    text("Go Badgers!", 469, 417);
 }
 
 //scoreboard
@@ -819,7 +820,6 @@ var pauseScreen = function ()
     fill(255, 0, 0);
     textSize(45);
     text("TIME OUT", 185, 165);
-   // text("Current Score: ", 100, 200);
     fill(52, 128, 44);
     startBtn.draw();
     //change START to CONTINUE
@@ -827,8 +827,9 @@ var pauseScreen = function ()
     rect(127,508,100,30);
     fill(255, 255, 255);
     text("CONTINUE",125,513);
-   drawBitmojiRami(212,229,15);
-   drawSophiaBitmoji(236,345,108);
+   drawBitmojiRami(235,230,15);
+   drawSophiaBitmoji(264,345,108);
+   drawBitmojiMax(199, 353, 186);
     
     //player team pause
     if (paddleColor === 1)
